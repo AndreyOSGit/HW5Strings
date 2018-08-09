@@ -13,97 +13,80 @@ public static void main(String[] args)
 	//**********************************
     // 3.1 ƒана строка, состо€ща€ из слов, разделенных пробелами и знаками препинани€. ќпределить длину самого короткого слова.
     //**********************************
-    public static int samoeKorotkoeSlovo(String inString)
-	{
-    	int shortest = Integer.MIN_VALUE;
-    	String[] arrSt; 
+//    public static int samoeKorotkoeSlovo(String inString)
+//	{
+//    	int shortest = Integer.MIN_VALUE;
+//    	String[] arrSt = null; 
 //    	 arrSt = inString.split("[ !?'-.,'':;]");
-//    	 arrSt = inString.split("\\!\\?\\,\\.");
-    	 System.out.println(arrSt.length);
-    	 
-    	for (int i = 0; i < arrSt.length; i++) 
-    	{
-			if(shortest > arrSt[i].length() & arrSt[i].length() != 0 )
-			{
-				shortest = arrSt[i].length();
-				System.out.println(arrSt[i]);
-			} 
-//			else 
+////    	 arrSt = inString.split("\\!\\?\\,\\.");
+//    	 System.out.println(arrSt.length);
+//    	 
+//    	for (int i = 0; i < arrSt.length; i++) 
+//    	{
+//			if(shortest > arrSt[i].length() & arrSt[i].length() != 0 )
 //			{
-//				throw new IllegalArgumentException("AAA!!!");
-//			}
-		}
-    	return shortest;
-	}
+//				shortest = arrSt[i].length();
+//				System.out.println(arrSt[i]);
+//			} 
+////			else 
+////			{
+////				throw new IllegalArgumentException("AAA!!!");
+////			}
+//		}
+//    	return shortest;
+//	}
    
     //**********************************
     // 3.1 ƒана строка, состо€ща€ из слов, разделенных пробелами и знаками препинани€. ќпределить длину самого короткого слова.
     //**********************************
-    public  static int SamoeKorotkoeSlovo(String s) {
+//    public  static int SamoeKorotkoeSlovo(String s) {
+//
+//        if (s == null) throw new NullPointerException("ArgumentNullException");
+//        if (s == "") throw new IllegalArgumentException("ArgumentException");
+//        int shortS = Integer.MAX_VALUE;
+//        String[] wordS = {};
+//       s = s.replaceAll("[.,\"?!:;()']", "");
+//       s = s.replace(" -", "");
+//       wordS = s.split(" ");
+//
+//        for (int i = 0; i < wordS.length; i++)
+//        {
+//           if (wordS[i].length() < shortS
+//                   && wordS[i].length() != 0)
+//           {
+//               shortS = wordS[i].length();
+//           }
+//        }
+//        return shortS;
+//    }
 
-        if (s == null) throw new NullPointerException("ArgumentNullException");
-        if (s == "") throw new IllegalArgumentException("ArgumentException");
-        int shortS = Integer.MAX_VALUE;
-        String[] wordS = {};
-       s = s.replaceAll("[.,\"?!:;()']", "");
-       s = s.replace(" -", "");
-       wordS = s.split(" ");
-
-        for (int i = 0; i < wordS.length; i++)
-        {
-           if (wordS[i].length() < shortS
-                   && wordS[i].length() != 0)
-           {
-               shortS = wordS[i].length();
-           }
-        }
-        return shortS;
-    }
-
-    //**********************************
-    // 3.1 ƒана строка, состо€ща€ из слов, разделенных пробелами и знаками препинани€. ќпределить длину самого короткого слова.
-    //**********************************
-    public int SamoeKorotkoeSlovo(String s)
-    {
-        if (s == null) throw new ArgumentNullException("ArgumentNullException");
-        if (s == "") throw new ArgumentException("ArgumentException");
-        int shortS = 0;
-        String[] wordS = { };
-
-            s = s.Trim(new char[] {' ', '.', ',', '?', '!', ':', ';', '(', ')', '\'', '\"' });
-
-            wordS = s.Split(' ');
-        for (int i = 0; i < wordS.Length; i++)
-        {
-            wordS[i] = wordS[i].Trim(new char[] {' ', '.', ',', '?', '!', ':', ';', '(', ')', '\'', '\"' });
-                    
-        }
-        shortS = wordS.Min().Length;
-        return shortS;
-    }
+ 
     //*************************
     //3.2 ƒан массив слов. «аменить последние три символа слов, имеющих заданную длину на символ "$"
     //*******************************************
     
     public String[] ChangWordsArray(String[] WordArray, int len)
      {
-        if (WordArray == null) throw new ArgumentNullException("ArgumentNullException");
-        if (WordArray.Length <= 0) throw new ArgumentOutOfRangeException("ArgumentOutOfRangeException");
+        if (WordArray == null) throw new IllegalArgumentException("ArgumentException");
+        if (WordArray.length <= 0) throw new IllegalArgumentException("ArgumentException");
 
         try
         {
-                for (int i = 0; i < WordArray.Length; i++)
+                for (int i = 0; i < WordArray.length; i++)
             {
             
-                    if (WordArray[i].Length == len)
+                    if (WordArray[i].length() >= len)
                     {
-                        WordArray[i] = WordArray[i].Remove(len - 3, 3);
-                        WordArray[i] = WordArray[i].Insert(len - 3, "$");
+                    	
+                    	WordArray[i] = WordArray[i].replace(
+                    			WordArray[i].substring(
+                    					WordArray[i].length()-3, WordArray[i].length())
+                    			, "$$$");                   
                     }
             
             }
                 
-          }  catch (ArgumentOutOfRangeException) { }
+          }  catch (IllegalArgumentException e) { }
         return WordArray;
      }
    
@@ -144,23 +127,7 @@ public static void main(String[] args)
         return s;
 
     }
-    //*************************
-    //3.5 ѕодсчитать количество слов во введенной пользователем строке.
-    //*******************************************
-    public int ChisloSlov(String s)
-    {
-        if (s == null) throw new ArgumentNullException("ArgumentNullException");
-        if (s == "") throw new ArgumentException("ArgumentException");
-        int nWords = 0;
-        String[] words = { };
 
-        s = s.Trim();
-        words = s.Split(' '); // разбить строки по разделителю  в массив строк
-        
-        nWords = words.Length;
-                 
-        return nWords;
-    }
     //*************************
     //3.6 ”далить из строки ее часть с заданной позиции и заданной длины.
     //*******************************************
@@ -185,8 +152,9 @@ public static void main(String[] args)
     }
 
     //*************************
-    //4.6 ѕодсчитать количество слов во введенной пользователем строке.
+    //3.5 ѕодсчитать количество слов во введенной пользователем строке.
     //*******************************************
+
     public static int ChisloSlov(String s)
     {
         if (s == null) throw new NullPointerException("ArgumentNullException");
